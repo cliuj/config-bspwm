@@ -19,4 +19,4 @@ bspc config focus_follows_pointer true
 
 dunst &
 picom --daemon
-~/.fehbg
+[ -f "$HOME/.fehbg" ] && "$HOME/.fehbg"
