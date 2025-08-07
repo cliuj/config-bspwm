@@ -2,12 +2,10 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
+# Monitor setup
 autorandr --change
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
-
-bspc monitor -d DP2-2 1 2 3
-bspc monitor -d DP1 1 2 3
 
 bspc config border_width        0
 bspc config window_gap          25
@@ -20,3 +18,9 @@ bspc config focus_follows_pointer true
 dunst &
 picom --daemon
 xset s off -dpms
+# Auto-detect connected monitors
+monitors=$(bspc query -M --names)
+for m in $monitors; do
+    bspc monitor "$m" -d 1 2 3 4 5 6 7 8 9
+done
+
